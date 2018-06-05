@@ -1,4 +1,4 @@
-package mcb.blogs;
+package mcb.blogs.authentication;
 
 public class ValidateTokenRequest {
     public String getToken() {

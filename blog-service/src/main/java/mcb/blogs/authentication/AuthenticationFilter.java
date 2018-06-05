@@ -1,4 +1,4 @@
-package mcb.blogs;
+package mcb.blogs.authentication;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
