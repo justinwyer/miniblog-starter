@@ -1,25 +1,25 @@
 package mcb.blogs.post;
 
+public class Post {
+    private final Number id;
+    private String body;
+    private Long userId;
 
-import io.requery.Column;
-import io.requery.Entity;
-import io.requery.ForeignKey;
-import io.requery.ManyToOne;
-import mcb.blogs.user.User;
+    public Post(Number id, String body, Long userId) {
+        this.id = id;
+        this.body = body;
+        this.userId = userId;
+    }
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+    public Number getId() {
+        return id;
+    }
 
-@Entity(model = "blog")
-public interface Post {
-    @Id
-    @GeneratedValue
-    Long getId();
+    public String getBody() {
+        return body;
+    }
 
-    String getBody();
-
-    @ManyToOne
-    User getUser();
-
-    String getUserId();
+    public Long getUserId() {
+        return userId;
+    }
 }

@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "79df6541-baa6-4b6d-819f-7bbfe10afb76",
+		"name": "miniblog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8083/authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "728f537b-9114-49a9-bdef-1f3c2558c73a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"jwt\", \"pm.response.text()\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"bob\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"authenticate"
+					]
+				},
+				"description": "Create or authenticate a user"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/posts",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "293cd22a-8e87-4471-bf52-22af9d6040d4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"body\": \"hello\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Create a post, remember to authenticate first"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8083/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Get all posts"
+			},
+			"response": []
+		}
+	]
+}

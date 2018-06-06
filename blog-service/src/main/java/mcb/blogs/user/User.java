@@ -1,22 +1,19 @@
 package mcb.blogs.user;
 
-import io.requery.Entity;
-import io.requery.OneToMany;
-import io.requery.query.Result;
-import mcb.blogs.post.Post;
+public class User {
+    private final Long id;
+    private final String username;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.List;
+    public User(Long id, String username) {
+        this.id = id;
+        this.username = username;
+    }
 
-@Entity(model = "blog")
-public interface User {
-    @Id
-    @GeneratedValue
-    Long getId();
+    public Long getId() {
+        return id;
+    }
 
-    String getUsername();
-
-    @OneToMany
-    Result<Post> getPosts();
+    public String getUsername() {
+        return username;
+    }
 }
