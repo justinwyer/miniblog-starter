@@ -41,7 +41,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                         .build();
                 DecodedJWT decodedJWT = jwtVerifier.verify(token);
                 Authentication auth = authenticationManager.authenticate(new JwtAuthenticationToken(decodedJWT));
-                SecurityContextHolder.getContext().setAuthentication(auth);
+                if (auth.isAuthenticated()) {
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                }
             } catch (JWTVerificationException ignored) {
 
             }

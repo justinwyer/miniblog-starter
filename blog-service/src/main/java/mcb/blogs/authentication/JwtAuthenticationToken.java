@@ -16,6 +16,7 @@ public class JwtAuthenticationToken implements Authentication {
 
     public JwtAuthenticationToken(DecodedJWT jwt) {
         this.jwt = jwt;
+        authenticated = true;
     }
 
     @Override
@@ -40,7 +41,7 @@ public class JwtAuthenticationToken implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return authenticated && jwt.getExpiresAt().before(new Date());
+        return authenticated && jwt.getExpiresAt().after(new Date());
     }
 
     @Override

@@ -11,7 +11,6 @@ public class DatabaseConfiguration {
     @Bean
     public DataSource provideJdbcTemplate() {
         var dataSource = new DriverManagerDataSource("jdbc:h2:~/blog", "sa", "");
-//        dataSource.setSchema("PUBLIC");
         return dataSource;
     }
 }
